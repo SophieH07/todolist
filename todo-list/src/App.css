@@ -1,0 +1,10 @@
+.card {
+    width: 20em;
+    text-align: center;
+    margin: 5px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
