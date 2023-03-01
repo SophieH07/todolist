@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div id="main">
       <Header />
       <Content
         groupList={groupList}
