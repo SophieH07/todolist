@@ -12,7 +12,7 @@ function Header() {
       sticky="top"
     >
       <Container>
-        <Navbar.Brand>MY TO DO LIST</Navbar.Brand>
+        <Navbar.Brand>MY TO-DO LIST</Navbar.Brand>
         <Navbar.Brand>{today}</Navbar.Brand>
       </Container>
     </Navbar>
