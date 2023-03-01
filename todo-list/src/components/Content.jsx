@@ -9,8 +9,10 @@ const Content = ({
   handleChangeGroupName,
   handleDeleteGroup,
   handleDeleteTask,
-  handleAddNewGroup,
-  handleAddNewTask,
+  addNewGroup,
+  addNewTask,
+  newGroup,
+  setNewGroup,
 }) => {
   return (
     <div className="content">
@@ -23,10 +25,14 @@ const Content = ({
           handleChangeGroupName={handleChangeGroupName}
           handleDeleteGroup={handleDeleteGroup}
           handleDeleteTask={handleDeleteTask}
-          handleAddNewTask={handleAddNewTask}
+          addNewTask={addNewTask}
         />
       ))}
-      <AddGroup handleAddNewGroup={handleAddNewGroup} />
+      <AddGroup
+        addNewGroup={addNewGroup}
+        newGroup={newGroup}
+        setNewGroup={setNewGroup}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,37 +7,20 @@ import Header from "./utils/Header";
 import Content from "./components/Content";
 
 function App() {
-  const [groupList, setGroupList] = useState([
-    {
-      id: 1,
-      name: "Work",
-    },
-    {
-      id: 2,
-      name: "Leisure",
-    },
-  ]);
+  const [groupList, setGroupList] = useState(
+    JSON.parse(localStorage.getItem("groupList")) || []
+  );
 
-  const [todoList, setTodoList] = useState([
-    {
-      id: 1,
-      groupId: 1,
-      checked: false,
-      task: "Finnish first project",
-    },
-    {
-      id: 2,
-      groupId: 2,
-      checked: false,
-      task: "Drink coffee",
-    },
-    {
-      id: 3,
-      groupId: 2,
-      checked: false,
-      task: "Read a book",
-    },
-  ]);
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem("todoList")) || []
+  );
+
+  const [newGroup, setNewGroup] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+    localStorage.setItem("groupList", JSON.stringify(groupList));
+  }, [todoList][groupList]);
 
   const handleCheck = (taskId) => {
     const updatedTasks = todoList.map((task) =>
@@ -60,19 +43,28 @@ function App() {
     setTodoList(newTodoList);
   };
 
-  const handleAddNewGroup = (group) => {
-    const id = groupList.length ? groupList[groupList.length - 1].id + 1 : 1;
-    const newGroup = { id, name: group };
-    const newGroupList = { ...groupList, newGroup };
-    setGroupList(newGroupList);
-  };
-
   const handleDeleteTask = (taskId) => {
     const newTodoList = todoList.filter((task) => task.id !== taskId);
     setTodoList(newTodoList);
   };
 
-  const handleAddNewTask = (groupId, taskId) => {};
+  const addNewGroup = () => {
+    const id = groupList.length ? groupList[groupList.length - 1].id + 1 : 1;
+    const newGroupItem = { id, name: newGroup };
+    const newGroupList = [...groupList, newGroupItem];
+    setGroupList(newGroupList);
+    setNewGroup("");
+  };
+
+  const addNewTask = (groupId, task) => {
+    const id = todoList.length ? todoList[todoList.length - 1].id + 1 : 1;
+    const newTodoItem = { id, groupId, checked: false, task };
+    const newTodoList = [...todoList, newTodoItem];
+    setTodoList(newTodoList);
+    document.querySelectorAll(".new-task").forEach((item) => {
+      item.value = "";
+    });
+  };
 
   return (
     <div>
@@ -84,8 +76,10 @@ function App() {
         handleChangeGroupName={handleChangeGroupName}
         handleDeleteGroup={handleDeleteGroup}
         handleDeleteTask={handleDeleteTask}
-        handleAddNewGroup={handleAddNewGroup}
-        handleAddNewTask={handleAddNewTask}
+        addNewGroup={addNewGroup}
+        addNewTask={addNewTask}
+        newGroup={newGroup}
+        setNewGroup={setNewGroup}
       />
     </div>
   );

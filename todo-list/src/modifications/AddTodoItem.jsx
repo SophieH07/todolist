@@ -1,10 +1,25 @@
 import { BsPlusSquare } from "react-icons/bs";
 import { ListGroup } from "react-bootstrap";
+import { useRef } from "react";
 
-const AddTodoItem = (groupId, handleAddNewTask) => {
+const AddTodoItem = ({ groupId, addNewTask }) => {
+  const inputRef = useRef();
+
+  const handleChange = () => {
+    inputRef.current.focus();
+    addNewTask(groupId, inputRef.current.value);
+    inputRef.current.value == "";
+  };
+
   return (
     <ListGroup.Item>
-      <input className={groupId} type="text" placeholder="Add new task" />
+      <input
+        className="new-task"
+        ref={inputRef}
+        type="text"
+        placeholder="Add new task"
+        required
+      />
       <BsPlusSquare
         onMouseOver={({ target }) => (
           (target.style.backgroundColor = "green"),
@@ -16,6 +31,7 @@ const AddTodoItem = (groupId, handleAddNewTask) => {
           float: "right",
           marginTop: "5.5px",
         }}
+        onClick={() => handleChange()}
       />
     </ListGroup.Item>
   );

@@ -12,7 +12,7 @@ const GroupList = ({
   handleChangeGroupName,
   handleDeleteGroup,
   handleDeleteTask,
-  handleAddNewTask,
+  addNewTask,
 }) => {
   const todoListByGroup = todoList.filter((task) => group.id === task.groupId);
 
@@ -38,7 +38,7 @@ const GroupList = ({
             handleDeleteTask={handleDeleteTask}
           />
         ))}
-        <AddTodoItem groupId={group.id} handleAddNewTask={handleAddNewTask} />
+        <AddTodoItem groupId={group.id} addNewTask={addNewTask} />
       </ListGroup>
     </Card>
   );
