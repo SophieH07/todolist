@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div id="main" style={{ backgroundColor: `${color}` }}>
-      <Header color={color} setColor={setColor} />
+      <Header setColor={setColor} />
       <Content
         groupList={groupList}
         todoList={todoList}
