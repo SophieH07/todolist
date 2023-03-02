@@ -8,7 +8,12 @@ const TaskList = ({ task, handleCheck, handleDeleteTask }) => {
         type="checkbox"
         checked={task.checked}
         onChange={() => handleCheck(task.id)}
-        style={{ float: "left", transform: "scale(2)", marginTop: "5px" }}
+        style={{
+          float: "left",
+          transform: "scale(2)",
+          marginTop: "5px",
+          marginRight: "4px",
+        }}
       />
       {task.task}
       <FaTrashAlt

@@ -2,20 +2,16 @@ html, body {
   height: 100vh;
 }
 
-#main {
-  height: 100vh;
-}
-
 @media (height: 100vh){
   #main {
     min-height: 100vh;
   }
+  
   input {
     max-width: 85%;
     margin-right: 1px;
   }
 }
-
 
 /*
 
