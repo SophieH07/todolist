@@ -6,7 +6,6 @@ const Content = ({
   groupList,
   todoList,
   handleCheck,
-  handleChangeGroupName,
   handleDeleteGroup,
   handleDeleteTask,
   addNewGroup,
@@ -22,7 +21,6 @@ const Content = ({
           group={group}
           todoList={todoList}
           handleCheck={handleCheck}
-          handleChangeGroupName={handleChangeGroupName}
           handleDeleteGroup={handleDeleteGroup}
           handleDeleteTask={handleDeleteTask}
           addNewTask={addNewTask}

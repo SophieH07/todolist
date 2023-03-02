@@ -9,7 +9,6 @@ const GroupList = ({
   group,
   todoList,
   handleCheck,
-  handleChangeGroupName,
   handleDeleteGroup,
   handleDeleteTask,
   addNewTask,

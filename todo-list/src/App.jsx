@@ -15,11 +15,16 @@ function App() {
     JSON.parse(localStorage.getItem("todoList")) || []
   );
 
+  const [color, setColor] = useState(
+    JSON.parse(localStorage.getItem("color")) || ""
+  );
+
   const [newGroup, setNewGroup] = useState("");
 
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
     localStorage.setItem("groupList", JSON.stringify(groupList));
+    localStorage.setItem("color", JSON.stringify(color));
   }, [todoList][groupList]);
 
   const handleCheck = (taskId) => {
@@ -27,13 +32,6 @@ function App() {
       task.id === taskId ? { ...task, checked: !task.checked } : task
     );
     setTodoList(updatedTasks);
-  };
-
-  const handleChangeGroupName = (groupId, newName) => {
-    const updatedGroups = groupList.map((group) =>
-      group.id === groupId ? { ...group, name: newName } : group
-    );
-    setGroupList(updatedGroups);
   };
 
   const handleDeleteGroup = (groupId) => {
@@ -67,13 +65,12 @@ function App() {
   };
 
   return (
-    <div id="main">
-      <Header />
+    <div id="main" style={{ backgroundColor: `${color}` }}>
+      <Header color={color} setColor={setColor} />
       <Content
         groupList={groupList}
         todoList={todoList}
         handleCheck={handleCheck}
-        handleChangeGroupName={handleChangeGroupName}
         handleDeleteGroup={handleDeleteGroup}
         handleDeleteTask={handleDeleteTask}
         addNewGroup={addNewGroup}

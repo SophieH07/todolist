@@ -7,14 +7,8 @@ import {
 } from "react-bootstrap";
 import { CirclePicker } from "react-color";
 
-function Header() {
+const Header = ({ setColor }) => {
   const today = new Date().toLocaleDateString();
-
-  const changeColor = (color) => {
-    console.log(color.hex);
-    //document.getElementsByTagName("html").style.color = color.hex;
-    document.getElementById("main").style.backgroundColor = color.hex;
-  };
 
   return (
     <Navbar
@@ -28,13 +22,17 @@ function Header() {
         <Navbar.Brand>MY TO-DO LIST</Navbar.Brand>
         <Navbar.Brand>
           <OverlayTrigger
-            trigger="click"
+            trigger="focus"
             key="bottom"
             placement="bottom"
+            //rootClose
             overlay={
               <Popover>
                 <Popover.Body>
-                  <CirclePicker onChange={(color) => changeColor(color)} />
+                  <CirclePicker
+                    style={{ float: "right", marginTop: "3px" }}
+                    onChange={(color) => setColor(color.hex)}
+                  />
                 </Popover.Body>
               </Popover>
             }
@@ -46,6 +44,6 @@ function Header() {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Header;
